@@ -6,7 +6,7 @@ async function getCategories() {
     try {
       const response = await  axios.get("https://ecommerce.routemisr.com/api/v1/categories")
 return{
-    data: response?.data.data,
+    data: response?.data.data ?? [],
     status: response.status,
     message: response?.data.message
 }

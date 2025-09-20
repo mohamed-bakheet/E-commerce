@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import axios from "axios";
+
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -48,11 +48,12 @@ try {
         console.log(response?.data, "online response");
         if(response?.data.status === "success"){
 window.location.href = response?.data.session.url;
-        //  setCartDetails(null);
-        // router.push("/");
+        setCartDetails(null);
+         router.push("/");
         }
     } catch (error) {
       console.log(error);
+      
      }
     }
 
