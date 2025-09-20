@@ -7,15 +7,16 @@ import {
 } from "@/components/ui/card"
 
 import Image from 'next/image'
-import Link from 'next/link'
+
 
 import { Categories } from '@/app/types/category.model'
 import { getOneCategories } from '@/app/action/categories.action'
+import { Subcategory } from '@/app/types/subcategory.model'
 
 export default function CategoryCard({categories}:{categories:Categories[]}) {
   // selected category id, subcategories and loading/error state
   const [openCategoryId, setOpenCategoryId] = useState<string | null>(null)
-  const [subcategories, setSubcategories] = useState<any[] | null>(null)
+  const [subcategories, setSubcategories] = useState<Subcategory[] | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -35,10 +36,11 @@ export default function CategoryCard({categories}:{categories:Categories[]}) {
       const response = await getOneCategories(categoryId)
       // adapt to API shape: response?.data?.data contains the subcategories per your console
       const subs = response?.data?.data ?? response?.data ?? response ?? []
+      console.log (response , "cat card")
       setSubcategories(subs)
-    } catch (err:any) {
+    } catch (err: unknown) {
       console.error(err)
-      setError(err?.message ?? "Failed to load subcategories")
+      
       setSubcategories(null)
     } finally {
       setLoading(false)

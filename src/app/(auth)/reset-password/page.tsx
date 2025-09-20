@@ -72,7 +72,7 @@ export default function ResetPaswordPage() {
           })}
         />
         {errors.newPassword && <p className="text-red-500">{errors.newPassword.message}</p>}
-
+{errorMessage ? <p className="text-3xl font-bold text-red-600">{errorMessage}</p>: null}
        
         
           <Button

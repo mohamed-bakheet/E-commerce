@@ -1,6 +1,6 @@
-import { Products } from '@/app/types/product.module'
+
 import React from 'react'
-import ProductCard from './ProductCard';
+
 import { Categories } from '@/app/types/category.model';
 import CategoryCard from './CategoryCard';
 
