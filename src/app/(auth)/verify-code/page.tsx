@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
-export default function forgetPaswordPage() {
+export default function VerifyCodePage() {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 

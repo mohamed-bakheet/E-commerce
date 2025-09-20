@@ -95,7 +95,7 @@ export default function CategoryCard({categories}:{categories:Categories[]}) {
           )}
 
           <div className="container text-center mx-auto my-10 max-w-9/10 h-max grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {subcategories?.map((sub:any) => (
+            {subcategories?.map((sub) => (
 
 <Card
             key={sub._id}

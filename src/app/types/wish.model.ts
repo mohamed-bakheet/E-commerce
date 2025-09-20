@@ -38,12 +38,12 @@ export interface WishItem {
   createdAt?: string;
   updatedAt?: string;
   __v?: number;
-  [key: string]: any;
+ 
 }
 
 export interface WishResponse {
   count: number;
   data: WishItem[];
   status?: string;
-  [key: string]: any;
+ 
 }

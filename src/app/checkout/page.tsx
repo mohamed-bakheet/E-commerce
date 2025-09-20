@@ -12,7 +12,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 
-export default function checkoutPage() {
+export default function CheckoutPage() {
   const [errorMessage, setErrorMessage] = useState(null);
   const router = useRouter();
   const {cartDetails , setCartDetails} = useCart();

@@ -34,7 +34,6 @@ export interface Product {
   brand?: Brand;
   category?: Category;
   subcategory?: Subcategory[];
-  [key: string]: any;
 }
 
 export interface CartItem {
