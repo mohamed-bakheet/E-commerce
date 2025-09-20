@@ -5,9 +5,23 @@ import { cookies } from "next/headers";
 
 export async function getUserToken() {
 
-     const encodedToken = (await cookies()).get("next-auth.session-token")?.value;
-        const decrepTtoken = await decode({token : encodedToken , secret : process.env.AUTH_SECRET!});
-        const token = decrepTtoken?.token;
+      const cookieStore = await cookies();
+  const encodedToken =
+    cookieStore.get("next-auth.session-token")?.value ||
+    cookieStore.get("__Secure-next-auth.session-token")?.value || // sometimes secure version
+    cookieStore.get("_vercel_jwt")?.value; // Vercel default
 
-    return token
+
+
+     
+        if (!encodedToken) return null;
+
+  // Decode token
+  const decoded = await decode({
+    token: encodedToken,
+    secret: process.env.NEXTAUTH_SECRET!,
+  });
+  const token = decoded?.token
+
+  return token;
 }

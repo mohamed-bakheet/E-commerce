@@ -29,7 +29,7 @@ export default function WishlistComp() {
   }
   return (
     <div className="flex flex-col container text-center py-10 px-4  mx-auto my-10 max-w-9/10 h-max">
-      {wishList?.data.map((item) => (
+      {wishList ? wishList?.data.map((item) => (
         <div
           key={item._id}
           className="grid lg:grid-cols-10 grid-cols-1 border p-5 rounded-lg gap-5"
@@ -67,7 +67,7 @@ export default function WishlistComp() {
             </div>
           </div>
         </div>
-      ))}
+      )): <p>your whishlist is empty</p>}
     </div>
   );
 }
