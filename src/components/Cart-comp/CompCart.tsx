@@ -19,6 +19,7 @@ import Link from "next/link";
 
 export default function CompCart() {
   const { cartDetails, getCartDetails } = useCart();
+  
   async function handleRemoveFromCart(productId: string) {
     const response = await deleteFromCart(productId);
     console.log(response, "remove from cart response");

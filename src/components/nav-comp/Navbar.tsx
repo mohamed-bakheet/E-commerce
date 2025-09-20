@@ -89,7 +89,7 @@ export default function Navbar() {
       {session ? (
             <button
               onClick={() => signOut({ callbackUrl: "/login" })}
-              className="p-2 text-lg font-bold hidden md:block"
+              className="p-2 text-lg font-bold hidden md:block cursor-pointer"
             >
               Logout
             </button>
