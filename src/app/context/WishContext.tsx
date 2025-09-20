@@ -18,7 +18,7 @@ const WishContext = createContext<WishContextType>({
 
 
 export default function WishContextProvider({children}: {children: React.ReactNode}) {
-   const [wishList, setWishList]= useState(null);
+   const [wishList, setWishList] = useState<WishResponse | null>(null);
 
 async function fetchWishList() {
     const response = await getUserWish();
