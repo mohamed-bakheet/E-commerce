@@ -24,12 +24,12 @@ export default function LoginPage() {
     formState: { errors },
   } = useForm<Inputs>();
   async function onSubmit(values: Inputs) {
-    console.log(values);
+    
     try {
       const response = await signIn("credentials", {
         email: values.email,
         password: values.password,
-        redirect: false, // Prevent automatic redirection
+        redirect: true, // Prevent automatic redirection
       });
 
       if (response?.error) {
