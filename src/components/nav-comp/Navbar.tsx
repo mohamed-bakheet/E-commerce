@@ -37,7 +37,7 @@ function SheetCloseLink({
 }
 
 export default function Navbar() {
-  const session = useSession();
+  const { data: session, status } = useSession();
   const { cartDetails } = useCart();
   const { wishList } = useWish();
 
@@ -85,7 +85,8 @@ export default function Navbar() {
 
         {/* Actions + Mobile Sheet */}
         <div className="flex items-center gap-4">
-          {session.data ? (
+          {status === "loading" && <p>Loading...</p>}
+      {session ? (
             <button
               onClick={() => signOut({ callbackUrl: "/login" })}
               className="p-2 text-lg font-bold hidden md:block"
@@ -138,11 +139,12 @@ export default function Navbar() {
                 <SheetCloseLink href="/wishlist">Wish-List</SheetCloseLink>
                 <SheetCloseLink href="/category">Category</SheetCloseLink>
 <div className=" border-3 border-gray-500 p-3">
-                {!session.data ? (
+                {status === "loading" && <p>Loading...</p>}
+      {session ? (
                   <SheetClose asChild>
                     <button
                       onClick={() => signOut({ callbackUrl: "/login" })}
-                      className="text-left"
+                      className="text-left cursor-pointer"
                     >
                       Logout
                     </button>
