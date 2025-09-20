@@ -138,7 +138,7 @@ export default function Navbar() {
                 <SheetCloseLink href="/wishlist">Wish-List</SheetCloseLink>
                 <SheetCloseLink href="/category">Category</SheetCloseLink>
 <div className=" border-3 border-gray-500 p-3">
-                {session.data ? (
+                {!session.data ? (
                   <SheetClose asChild>
                     <button
                       onClick={() => signOut({ callbackUrl: "/login" })}
