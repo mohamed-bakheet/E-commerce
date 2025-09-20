@@ -19,7 +19,13 @@ console.log(session , "session in home page");
   const response = await getCategories();
 
   const data = response?.data;
-  const{data : products} = await getProduct();
+ const responses = await getProduct();
+
+if (!responses || !responses.data) {
+  return <div className="text-center my-10">Error: Unable to fetch products.</div>;
+}
+
+const { data: products } = responses;
   
   return (
     <>
