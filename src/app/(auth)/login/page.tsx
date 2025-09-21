@@ -76,7 +76,7 @@ export default function LoginPage() {
           <p className="text-red-500">{errors.password.message}</p>
         )}
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-<div className="flex justify-between items-center w-full">
+<div className="flex flex-col md:flex-row justify-between items-center w-full m-4">
   <Link href={"/forgetpasword"} className="text-blue-500 hover:underline text-4xl">
           Forget Password?
   </Link>
