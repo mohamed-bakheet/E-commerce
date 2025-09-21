@@ -2,16 +2,12 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function LoginPage() {
-  const { data: session } = useSession();
-  const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   interface Inputs {
@@ -25,27 +21,20 @@ export default function LoginPage() {
     formState: { errors },
   } = useForm<Inputs>();
 
-  // 🚀 Redirect only when session is actually ready
-  useEffect(() => {
-    if (session) {
-      router.push("/");
-    }
-  }, [session, router]);
-
   async function onSubmit(values: Inputs) {
     try {
       const response = await signIn("credentials", {
         email: values.email,
         password: values.password,
-        redirect: false, // keep manual control
+        redirect: true,
+        callbackUrl: "/", // NextAuth will handle navigation
       });
 
       if (response?.error) {
         console.error("Login failed:", response.error);
         setErrorMessage("Invalid email or password");
       } else {
-        setErrorMessage(null); // clear errors on success
-        // 🔑 Don't push here! wait for session in useEffect
+        setErrorMessage(null);
       }
     } catch (error) {
       console.error("Unexpected error during login:", error);
