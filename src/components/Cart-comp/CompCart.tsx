@@ -50,7 +50,7 @@ export default function CompCart() {
               {cartDetails?.data?.products.map((product) => (
                 <TableRow key={product.product._id}>
                   <TableCell className="font-medium p-3">
-                    <div className="flex items-center justify-center">
+                    <div className="flex flex-col md:flex-row items-center justify-center">
                       <div className="relative">
                         <Badge
                           onClick={() =>

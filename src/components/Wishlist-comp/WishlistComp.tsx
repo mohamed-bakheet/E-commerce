@@ -60,7 +60,7 @@ export default function WishlistComp() {
             <div className="flex items-center">
               <Button
                 onClick={() => handleAddToCart(item._id)}
-                className="bg-indigo-400 p-10 rounded-lg text-white text-3xl font-bold"
+                className="bg-indigo-400 p-10 rounded-lg text-white md:text-3xl text-2xl font-bold"
               >
                 Add to Cart
               </Button>

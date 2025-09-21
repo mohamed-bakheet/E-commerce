@@ -77,10 +77,10 @@ export default function LoginPage() {
         )}
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
 <div className="flex flex-col md:flex-row justify-between items-center w-full m-4">
-  <Link href={"/forgetpasword"} className="text-blue-500 hover:underline text-4xl">
+  <Link href={"/forgetpasword"} className="text-blue-500 hover:underline text-2xl md:text-4xl">
           Forget Password?
   </Link>
-        <Button type="submit" className="px-5 text-3xl py-10 my-5 w-50 bg-indigo-400 text-white font-bold rounded-lg">
+        <Button type="submit" className="px-5 md:text-3xl text-2xl py-10 my-5 w-50 bg-indigo-400 text-white font-bold rounded-lg">
           Login
         </Button>
         </div>
