@@ -42,105 +42,110 @@ export default function Navbar() {
   const { wishList } = useWish();
 
   return (
-    
-      <div className="container mx-auto flex items-center justify-between py-6 my-10 max-w-9/10 h-max ">
-                <Image src= "/Yellow and Black Online Shop Business Logo.png"  alt= "shop"   width= {70} height={70} className="rounded-3xl me-3" />
-        
-        <Link href="/" className="text-3xl font-bold">
-          E-Shop
+    <div className="container mx-auto flex items-center justify-between py-6 my-10 max-w-9/10 h-max">
+      <Image
+        src="/Yellow and Black Online Shop Business Logo.png"
+        alt="shop"
+        width={70}
+        height={70}
+        className="rounded-3xl me-3"
+      />
+
+      <Link href="/" className="text-3xl font-bold">
+        E-Shop
+      </Link>
+
+      {/* Desktop NavigationMenu */}
+      <div className="hidden md:flex flex-1 justify-center">
+        <NavigationMenu>
+          <NavigationMenuList className="flex gap-6">
+            <NavigationMenuItem>
+              <Link href="/" className="p-2 text-2xl font-bold">
+                Home
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/products" className="p-2 text-2xl font-bold">
+                Products
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/cart" className="p-2 text-2xl font-bold">
+                Cart
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/wishlist" className="p-2 text-2xl font-bold">
+                Wish-List
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/category" className="p-2 text-2xl font-bold">
+                Category
+              </Link>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
+
+      {/* Actions + Mobile Sheet */}
+      <div className="flex items-center gap-4">
+        {status === "loading" && <p>Loading...</p>}
+        {session ? (
+          <button
+            onClick={() => signOut({ callbackUrl: "/login" })}
+            className="p-2 text-lg font-bold hidden md:block cursor-pointer"
+          >
+            Logout
+          </button>
+        ) : (
+          <div className="hidden md:flex gap-4">
+            <Link href="/login" className="p-2 text-2xl font-bold">
+              Login
+            </Link>
+            <Link href="/register" className="p-2 text-2xl font-bold">
+              Register
+            </Link>
+          </div>
+        )}
+
+        {/* Cart */}
+        <Link
+          href="/cart"
+          className="hidden md:flex bg-indigo-400 rounded-3xl px-4 py-2 items-center gap-2"
+        >
+          <ShoppingBag size={24} />
+          <span className="text-xl font-bold">
+            {cartDetails?.numOfCartItems ?? 0}
+          </span>
         </Link>
 
-        {/* Desktop NavigationMenu */}
-        <div className="hidden md:flex flex-1 justify-center">
-          <NavigationMenu>
-            <NavigationMenuList className="flex gap-6">
-              <NavigationMenuItem>
-                <Link href="/" className="p-2 text-2xl font-bold">
-                  Home
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/products" className="p-2 text-2xl font-bold">
-                  Products
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/cart" className="p-2 text-2xl font-bold">
-                  Cart
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/wishlist" className="p-2 text-2xl font-bold">
-                  Wish-List
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/category" className="p-2 text-2xl font-bold">
-                  Category
-                </Link>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-        </div>
+        {/* Wishlist */}
+        <Link
+          href="/wishlist"
+          className="hidden md:flex bg-indigo-400 rounded-3xl px-4 py-2 items-center gap-2"
+        >
+          <Heart size={24} />
+          <span className="text-xl font-bold">{wishList?.count ?? 0}</span>
+        </Link>
 
-        {/* Actions + Mobile Sheet */}
-        <div className="flex items-center gap-4">
-          {status === "loading" && <p>Loading...</p>}
-      {session ? (
-            <button
-              onClick={() => signOut({ callbackUrl: "/login" })}
-              className="p-2 text-lg font-bold hidden md:block cursor-pointer"
-            >
-              Logout
+        {/* Mobile Sheet */}
+        <Sheet>
+          <SheetTrigger asChild>
+            <button className="md:hidden p-2">
+              <Menu size={28} />
             </button>
-          ) : (
-            <div className="hidden md:flex gap-4">
-              <Link href="/login" className="p-2 text-2xl font-bold">
-                Login
-              </Link>
-              <Link href="/register" className="p-2 text-2xl font-bold">
-                Register
-              </Link>
-            </div>
-          )}
-
-          {/* Cart */}
-          <Link
-            href="/cart"
-            className="bg-indigo-400 rounded-3xl px-4 py-2 flex items-center gap-2"
-          >
-            <ShoppingBag size={24} />
-            <span className="text-xl font-bold">
-              {cartDetails?.numOfCartItems ?? 0}
-            </span>
-          </Link>
-
-          {/* Wishlist */}
-          <Link
-            href="/wishlist"
-            className="bg-indigo-400 rounded-3xl px-4 py-2 flex items-center gap-2"
-          >
-            <Heart size={24} />
-            <span className="text-xl font-bold">{wishList?.count ?? 0}</span>
-          </Link>
-
-          {/* Mobile Sheet */}
-          <Sheet>
-            <SheetTrigger asChild>
-              <button className="md:hidden p-2">
-                <Menu size={28} />
-              </button>
-            </SheetTrigger>
-            <SheetContent side="top" className="w-screen">
-              <nav className="flex flex-col gap-6 p-6 text-lg font-bold">
-                <SheetCloseLink href="/">Home</SheetCloseLink>
-                <SheetCloseLink href="/products">Products</SheetCloseLink>
-                <SheetCloseLink href="/cart">Cart</SheetCloseLink>
-                <SheetCloseLink href="/wishlist">Wish-List</SheetCloseLink>
-                <SheetCloseLink href="/category">Category</SheetCloseLink>
-<div className=" border-3 border-gray-500 p-3">
+          </SheetTrigger>
+          <SheetContent side="top" className="w-screen">
+            <nav className="flex flex-col gap-6 p-6 text-lg font-bold">
+              <SheetCloseLink href="/">Home</SheetCloseLink>
+              <SheetCloseLink href="/products">Products</SheetCloseLink>
+              <SheetCloseLink href="/cart">Cart</SheetCloseLink>
+              <SheetCloseLink href="/wishlist">Wish-List</SheetCloseLink>
+              <SheetCloseLink href="/category">Category</SheetCloseLink>
+              <div className="border-3 border-gray-500 p-3">
                 {status === "loading" && <p>Loading...</p>}
-      {session ? (
+                {session ? (
                   <SheetClose asChild>
                     <button
                       onClick={() => signOut({ callbackUrl: "/login" })}
@@ -155,12 +160,31 @@ export default function Navbar() {
                     <SheetCloseLink href="/register">Register</SheetCloseLink>
                   </>
                 )}
-                </div>
-              </nav>
-            </SheetContent>
-          </Sheet>
-        </div>
+              </div>
+
+              {/* Cart and Wishlist in Mobile Menu */}
+              <div className="flex flex-row gap-4">
+                <SheetCloseLink href="/cart">
+                  <div className=" bg-indigo-400 rounded-3xl px-4 py-2 flex items-center w-25 gap-2">
+                    <ShoppingBag size={24} />
+                    <span className="text-xl font-bold">
+                      {cartDetails?.numOfCartItems ?? 0}
+                    </span>
+                  </div>
+                </SheetCloseLink>
+                <SheetCloseLink href="/wishlist">
+                  <div className="bg-indigo-400 rounded-3xl px-4 py-2 w-25 flex items-center gap-2">
+                    <Heart size={24} />
+                    <span className="text-xl font-bold">
+                      {wishList?.count ?? 0}
+                    </span>
+                  </div>
+                </SheetCloseLink>
+              </div>
+            </nav>
+          </SheetContent>
+        </Sheet>
       </div>
-    
+    </div>
   );
 }

@@ -2,6 +2,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getCart } from "../action/cart.action";
 import { Cart } from "../types/cart.model";
+import { useSession } from "next-auth/react";
+
 
 
 interface CartContextType {
@@ -19,21 +21,26 @@ const CartContext = createContext<CartContextType>({
 
 export default function CartContextProvider({children}: {children: React.ReactNode}) {
 
-const [cartDetails, setCartDetails] = useState<Cart | null>(null);
+const { data: session } = useSession(); // Listen to session changes
+  const [cartDetails, setCartDetails] = useState<Cart | null>(null);
 
-async function getCartDetails() {
+  async function getCartDetails() {
+    const response = await getCart();
+    console.log(response, "cart response");
+    setCartDetails(response?.data || null);
+  }
 
-const response = await getCart()
-console.log(response , "cart response");
-setCartDetails( response?.data || null);
-}
-useEffect(() => {
-getCartDetails();
-}, [] )
+  useEffect(() => {
+    if (session) {
+      getCartDetails(); // Refetch cart details after login
+    }
+  }, [session]);
 
-    return <CartContext.Provider value={{cartDetails, getCartDetails, setCartDetails}}>
-        {children}
+  return (
+    <CartContext.Provider value={{ cartDetails, getCartDetails, setCartDetails }}>
+      {children}
     </CartContext.Provider>
+  );
 }
 
 export function useCart(){
