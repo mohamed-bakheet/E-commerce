@@ -34,7 +34,7 @@ toast.success(response?.message);
 await getCartDetails();
   }
   return (
-    <div className="flex justify-between gap-4 items-center">
+    <div className="flex flex-col md:flex-row justify-between gap-4 items-center">
       <div className="w-full md:w-1/2"> 
       <Swiper
                 slidesPerView={1}
