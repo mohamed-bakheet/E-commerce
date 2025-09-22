@@ -84,6 +84,11 @@ export default function Navbar() {
                 Category
               </Link>
             </NavigationMenuItem>
+             <NavigationMenuItem>
+              <Link href="/brands" className="p-2 text-2xl font-bold">
+                Brands
+              </Link>
+            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
       </div>
@@ -143,6 +148,7 @@ export default function Navbar() {
               <SheetCloseLink href="/cart">Cart</SheetCloseLink>
               <SheetCloseLink href="/wishlist">Wish-List</SheetCloseLink>
               <SheetCloseLink href="/category">Category</SheetCloseLink>
+               <SheetCloseLink href="/brands">Brands</SheetCloseLink>
               <div className="border-3 border-gray-500 p-3">
                 {status === "loading" && <p>Loading...</p>}
                 {session ? (
