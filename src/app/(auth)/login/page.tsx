@@ -4,11 +4,22 @@ import { Input } from "@/components/ui/input";
 
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function LoginPage() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+    const error = searchParams.get("error");
+    if (error === "CredentialsSignin") {
+      setErrorMessage("Invalid email or password");
+    } else if (error) {
+      setErrorMessage("Something went wrong, please try again.");
+    }
+  }, [searchParams]);
 
   interface Inputs {
     email: string;
@@ -22,25 +33,16 @@ export default function LoginPage() {
   } = useForm<Inputs>();
 
   async function onSubmit(values: Inputs) {
-    try {
-      const response = await signIn("credentials", {
+    
+      await signIn("credentials", {
         email: values.email,
         password: values.password,
         redirect: true,
         callbackUrl: "/", // NextAuth will handle navigation
       });
 
-      if (response?.error) {
-        console.error("Login failed:", response.error);
-        setErrorMessage("Invalid email or password");
-      } else {
-        setErrorMessage(null);
-      }
-    } catch (error) {
-      console.error("Unexpected error during login:", error);
-      setErrorMessage("An unexpected error occurred. Please try again.");
     }
-  }
+  
 
   return (
     <div className="w-1/2 mx-auto text-center my-10">

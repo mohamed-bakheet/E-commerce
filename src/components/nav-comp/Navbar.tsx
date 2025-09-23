@@ -57,6 +57,7 @@ export default function Navbar() {
 
       {/* Desktop NavigationMenu */}
       <div className="hidden md:flex flex-1 justify-center">
+        {session ? (
         <NavigationMenu>
           <NavigationMenuList className="flex gap-6">
             <NavigationMenuItem>
@@ -91,7 +92,8 @@ export default function Navbar() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-      </div>
+        ): (null)}
+        </div>
 
       {/* Actions + Mobile Sheet */}
       <div className="flex items-center gap-4">
@@ -143,12 +145,14 @@ export default function Navbar() {
           </SheetTrigger>
           <SheetContent side="top" className="w-screen">
             <nav className="flex flex-col gap-6 p-6 text-lg font-bold">
+               {session ? (<>
               <SheetCloseLink href="/">Home</SheetCloseLink>
               <SheetCloseLink href="/products">Products</SheetCloseLink>
               <SheetCloseLink href="/cart">Cart</SheetCloseLink>
               <SheetCloseLink href="/wishlist">Wish-List</SheetCloseLink>
               <SheetCloseLink href="/category">Category</SheetCloseLink>
                <SheetCloseLink href="/brands">Brands</SheetCloseLink>
+               </>):(null)}
               <div className="border-3 border-gray-500 p-3">
                 {status === "loading" && <p>Loading...</p>}
                 {session ? (
