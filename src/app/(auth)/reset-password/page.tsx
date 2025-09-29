@@ -52,7 +52,7 @@ export default function ResetPaswordPage() {
         suppressHydrationWarning // Suppress hydration warnings for dynamic attributes
       >
         <Input
-          className="p-5 my-7"
+          className="p-5 my-7 border-3 border-gray-500 focus:border-black focus:border-4 rounded-2xl"
           type="email"
           placeholder="Your Email"
           autoComplete="email"
@@ -63,7 +63,7 @@ export default function ResetPaswordPage() {
         {errors.email && <p className="text-red-500">{errors.email.message}</p>}
 
          <Input
-          className="p-5 my-7"
+          className="p-5 my-7 border-3 border-gray-500 focus:border-black focus:border-4 rounded-2xl"
           type="password"
           placeholder="Your new Password"
           autoComplete="password"

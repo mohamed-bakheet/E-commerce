@@ -50,7 +50,7 @@ export default function VerifyCodePage() {
         suppressHydrationWarning // Suppress hydration warnings for dynamic attributes
       >
         <Input
-          className="p-5 my-7"
+          className="p-5 my-7 border-3 border-gray-500 focus:border-black focus:border-4 rounded-2xl"
           type="text"
           placeholder="Your verification code"
           autoComplete="number"

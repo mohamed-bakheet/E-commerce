@@ -48,14 +48,14 @@ export default function RegisterPage() {
       {errorMessage && <p className="text-red-500">{errorMessage}</p>}
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
         <Input
-          className="p-5 my-7"
+          className="p-5 my-7 border-3 border-gray-500 focus:border-black focus:border-4 rounded-2xl"
           type="text"
           placeholder="Your Name"
           {...register("name", { required: "name is required" })}
         />
         {errors.name && <p className="text-red-500">{errors.name.message}</p>}
         <Input
-          className="p-5 my-7"
+          className="p-5 my-7 border-3 border-gray-500 focus:border-black focus:border-4 rounded-2xl"
           type="email"
           placeholder="Your Email"
           {...register("email", {
@@ -64,7 +64,7 @@ export default function RegisterPage() {
         />
         {errors.email && <p className="text-red-500">{errors.email.message}</p>}
         <Input
-          className="p-5 my-7"
+          className="p-5 my-7 border-3 border-gray-500 focus:border-black focus:border-4 rounded-2xl"
           type="password"
           placeholder="Your Password"
           {...register("password", {
@@ -75,7 +75,7 @@ export default function RegisterPage() {
           <p className="text-red-500">{errors.password.message}</p>
         )}
         <Input
-          className="p-5 my-7"
+          className="p-5 my-7 border-3 border-gray-500 focus:border-black focus:border-4 rounded-2xl"
           type="password"
           placeholder="Confirm Password"
           {...register("rePassword", {
@@ -86,7 +86,7 @@ export default function RegisterPage() {
           <p className="text-red-500">{errors.rePassword.message}</p>
         )}
         <Input
-          className="p-5 my-7"
+          className="p-5 my-7 border-3 border-gray-500 focus:border-black focus:border-4 rounded-2xl"
           type="tel"
           placeholder="Your Phone"
           {...register("phone", {

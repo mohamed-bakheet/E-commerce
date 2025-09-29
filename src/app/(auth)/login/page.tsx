@@ -10,16 +10,9 @@ import { useForm } from "react-hook-form";
 
 export default function LoginPage() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    const searchParams = useSearchParams();
+  
 
-    useEffect(() => {
-    const error = searchParams.get("error");
-    if (error === "CredentialsSignin") {
-      setErrorMessage("Invalid email or password");
-    } else if (error) {
-      setErrorMessage("Something went wrong, please try again.");
-    }
-  }, [searchParams]);
+   
 
   interface Inputs {
     email: string;
@@ -34,14 +27,29 @@ export default function LoginPage() {
 
   async function onSubmit(values: Inputs) {
     
-      await signIn("credentials", {
-        email: values.email,
-        password: values.password,
-        redirect: true,
-        callbackUrl: "/", // NextAuth will handle navigation
-      });
+    try {
+    const result = await signIn("credentials", {
+      email: values.email,
+      password: values.password,
+      redirect: false,
+      callbackUrl: "/",
+    });
 
+    console.log("SignIn result:", result);
+
+    if (result?.error) {
+      console.log("API Error:", result.error); // 👈 now should show "User not found" etc.
+      setErrorMessage(result.error);
+    } else if (result?.ok) {
+      console.log("Login success ✅ redirecting...");
+      window.location.href = "/";
     }
+  } catch (err) {
+    console.error("Unexpected signIn error:", err);
+    setErrorMessage("Something went wrong. Please try again.");
+  }
+}
+
   
 
   return (
@@ -54,7 +62,7 @@ export default function LoginPage() {
         suppressHydrationWarning
       >
         <Input
-          className="p-5 my-7"
+          className="p-5 my-7 border-3 border-gray-500 focus:border-black focus:border-4 rounded-2xl"
           type="email"
           placeholder="Your Email"
           autoComplete="email"
@@ -65,7 +73,7 @@ export default function LoginPage() {
         {errors.email && <p className="text-red-500">{errors.email.message}</p>}
 
         <Input
-          className="p-5 my-7"
+          className="p-5 my-7 border-3 border-gray-500 focus:border-black focus:border-4 rounded-2xl"
           type="password"
           placeholder="Your Password"
           autoComplete="current-password"
