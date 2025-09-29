@@ -44,7 +44,7 @@ export default function ResetPaswordPage() {
   }
   return (
     <div className="w-1/2 mx-auto text-center my-10">
-      <h2 className="text-3xl tracking-tighter font-bold my-5">please enter your Email</h2>
+      <h2 className="md:text-3xl tracking-tighter font-bold my-5">please enter your Email and your new Password</h2>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
