@@ -34,7 +34,7 @@ const { data: products } = responses;
      <div className='my-5'>
       <CatSliderComp categories={data}/>
     </div>
-    <div className='container text-center mx-auto my-10 max-w-9/10 h-max'>
+    <div className='container text-center mx-auto my-10 h-max'>
     <ProductGrid products={products}/>
     </div>
     </>

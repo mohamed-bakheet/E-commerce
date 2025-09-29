@@ -42,7 +42,8 @@ export default function Navbar() {
   const { wishList } = useWish();
 
   return (
-    <div className="container mx-auto flex items-center justify-between py-6 my-10 max-w-9/10 h-max">
+    <div className="bg-gray-100">
+    <div className="container mx-auto flex items-center justify-between py-6  h-max overflow-hidden">
       <Image
         src="/Yellow and Black Online Shop Business Logo.png"
         alt="shop"
@@ -56,37 +57,37 @@ export default function Navbar() {
       </Link>
 
       {/* Desktop NavigationMenu */}
-      <div className="hidden md:flex flex-1 justify-center">
+      <div className="hidden lg:flex flex-1 justify-center">
         {session ? (
         <NavigationMenu>
-          <NavigationMenuList className="flex gap-6">
+          <NavigationMenuList className="flex gap-2">
             <NavigationMenuItem>
-              <Link href="/" className="p-2 text-2xl font-bold">
+              <Link href="/" className="p-2 text-lg font-bold">
                 Home
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/products" className="p-2 text-2xl font-bold">
+              <Link href="/products" className="p-2 text-lg font-bold">
                 Products
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/cart" className="p-2 text-2xl font-bold">
+              <Link href="/cart" className="p-2 text-lg font-bold">
                 Cart
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/wishlist" className="p-2 text-2xl font-bold">
+              <Link href="/wishlist" className="p-2 text-lg font-bold">
                 Wish-List
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/category" className="p-2 text-2xl font-bold">
+              <Link href="/category" className="p-2 text-lg font-bold">
                 Category
               </Link>
             </NavigationMenuItem>
              <NavigationMenuItem>
-              <Link href="/brands" className="p-2 text-2xl font-bold">
+              <Link href="/brands" className="p-2 text-lg font-bold">
                 Brands
               </Link>
             </NavigationMenuItem>
@@ -101,12 +102,12 @@ export default function Navbar() {
         {session ? (
           <button
             onClick={() => signOut({ callbackUrl: "/login" })}
-            className="p-2 text-lg font-bold hidden md:block cursor-pointer"
+            className="p-2 text-lg font-bold hidden lg:block cursor-pointer"
           >
             Logout
           </button>
         ) : (
-          <div className="hidden md:flex gap-4">
+          <div className="hidden lg:flex gap-4">
             <Link href="/login" className="p-2 text-2xl font-bold">
               Login
             </Link>
@@ -119,7 +120,7 @@ export default function Navbar() {
         {/* Cart */}
         <Link
           href="/cart"
-          className="hidden md:flex bg-indigo-400 rounded-3xl px-4 py-2 items-center gap-2"
+          className="hidden lg:flex bg-indigo-400 rounded-3xl px-4 py-2 items-center gap-2"
         >
           <ShoppingBag size={24} />
           <span className="text-xl font-bold">
@@ -130,7 +131,7 @@ export default function Navbar() {
         {/* Wishlist */}
         <Link
           href="/wishlist"
-          className="hidden md:flex bg-indigo-400 rounded-3xl px-4 py-2 items-center gap-2"
+          className="hidden lg:flex bg-indigo-400 rounded-3xl px-4 py-2 items-center gap-2"
         >
           <Heart size={24} />
           <span className="text-xl font-bold">{wishList?.count ?? 0}</span>
@@ -139,7 +140,7 @@ export default function Navbar() {
         {/* Mobile Sheet */}
         <Sheet>
           <SheetTrigger asChild>
-            <button className="md:hidden p-2">
+            <button className="lg:hidden p-2">
               <Menu size={28} />
             </button>
           </SheetTrigger>
@@ -195,6 +196,7 @@ export default function Navbar() {
           </SheetContent>
         </Sheet>
       </div>
+    </div>
     </div>
   );
 }

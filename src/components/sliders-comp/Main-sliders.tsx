@@ -12,7 +12,7 @@ import Image from "next/image";
 
 export default function MainSliders() {
   return (
-    <div className="container text-center relative mx-auto my-10 max-w-9/10 h-max">
+    <div className="container text-center relative mx-auto my-10 h-max overflow-hidden">
       <div className="top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 absolute z-3">
         <h1 className="text-white text-4xl md:text-6xl lg:text-8xl font-extrabold uppercase">
           fashion changing always
