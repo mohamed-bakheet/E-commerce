@@ -18,6 +18,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import Image from "next/image";
+import { ActiveLink } from "./Active-comp";
 
 /* Helper: Auto-close sheet when link is clicked */
 function SheetCloseLink({
@@ -43,53 +44,54 @@ export default function Navbar() {
 
   return (
     <div className="bg-gray-100">
-    <div className="container mx-auto flex items-center justify-between py-6  h-max overflow-hidden">
+    <div className="container mx-auto flex items-center xl:max-w-[90%] justify-between py-6 h-max overflow-hidden">
+      <div className="flex flex-row items-center gap-2 ">
       <Image
         src="/Yellow and Black Online Shop Business Logo.png"
         alt="shop"
         width={70}
         height={70}
-        className="rounded-3xl me-3"
+        className="rounded-3xl"
       />
 
       <Link href="/" className="text-3xl font-bold">
         E-Shop
       </Link>
-
+</div>
       {/* Desktop NavigationMenu */}
       <div className="hidden lg:flex flex-1 justify-center">
         {session ? (
         <NavigationMenu>
           <NavigationMenuList className="flex gap-2">
             <NavigationMenuItem>
-              <Link href="/" className="p-2 text-lg font-bold">
+              <ActiveLink href="/" >
                 Home
-              </Link>
+              </ActiveLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/products" className="p-2 text-lg font-bold">
+              <ActiveLink href="/products" >
                 Products
-              </Link>
+              </ActiveLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/cart" className="p-2 text-lg font-bold">
+              <ActiveLink href="/cart" >
                 Cart
-              </Link>
+              </ActiveLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/wishlist" className="p-2 text-lg font-bold">
+              <ActiveLink href="/wishlist" >
                 Wish-List
-              </Link>
+              </ActiveLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/category" className="p-2 text-lg font-bold">
+              <ActiveLink href="/category" >
                 Category
-              </Link>
+              </ActiveLink>
             </NavigationMenuItem>
              <NavigationMenuItem>
-              <Link href="/brands" className="p-2 text-lg font-bold">
+              <ActiveLink href="/brands" >
                 Brands
-              </Link>
+              </ActiveLink>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
@@ -147,12 +149,12 @@ export default function Navbar() {
           <SheetContent side="top" className="w-screen">
             <nav className="flex flex-col gap-6 p-6 text-lg font-bold">
                {session ? (<>
-              <SheetCloseLink href="/">Home</SheetCloseLink>
-              <SheetCloseLink href="/products">Products</SheetCloseLink>
-              <SheetCloseLink href="/cart">Cart</SheetCloseLink>
-              <SheetCloseLink href="/wishlist">Wish-List</SheetCloseLink>
-              <SheetCloseLink href="/category">Category</SheetCloseLink>
-               <SheetCloseLink href="/brands">Brands</SheetCloseLink>
+              <ActiveLink text-lg font-bold href="/" mobile>Home</ActiveLink>
+              <ActiveLink href="/products" mobile>Products</ActiveLink>
+              <ActiveLink href="/cart" mobile>Cart</ActiveLink>
+              <ActiveLink href="/wishlist" mobile>Wish-List</ActiveLink>
+              <ActiveLink href="/category" mobile>Category</ActiveLink>
+               <ActiveLink href="/brands" mobile>Brands</ActiveLink>
                </>):(null)}
               <div className="border-3 border-gray-500 p-3">
                 {status === "loading" && <p>Loading...</p>}
